@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rspi — Nicholas Barton</title>
+  <meta name="description" content="Portfolio of Nicholas “Rspi” Barton, a North American Call of Duty competitor. Team history, Challengers results, and press from the public record.">
+  <meta name="theme-color" content="#09090b">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #09090b;
+  --bg-elev: #111114;
+  --bg-elev-2: #18181d;
+  --line: rgba(244, 241, 234, 0.12);
+  --line-strong: rgba(244, 241, 234, 0.28);
+  --text: #f4f1ea;
+  --muted: #b7b1a6;
+  --faint: #8a847a;
+  --accent: #ff5a1f;
+  --accent-ink: #1a0903;
+  --serif: "Instrument Serif", "Iowan Old Style", Palatino, Georgia, serif;
+  --sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --header: 4.5rem;
+  --wrap: 1120px;
+  --pad: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.6rem 0.9rem;
+  text-decoration: none;
+}
+
+.skip:focus {
+  top: 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wrap {
+  width: min(var(--wrap), calc(100% - var(--pad) * 2));
+  margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header);
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid transparent;
+  background: transparent;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(9, 9, 11, 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: var(--line);
+}
+
+.header-inner {
+  width: min(var(--wrap), calc(100% - var(--pad) * 2));
+  height: 100%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logo {
+  position: relative;
+  z-index: 50;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.84rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.nav-link:hover,
+.nav-link[aria-current="true"] {
+  color: var(--text);
+}
+
+.nav-cta {
+  text-decoration: none;
+  border: 1px solid var(--line-strong);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-cta:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 50;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  padding: 0.4rem 0.65rem;
+}
+
+.nav-toggle-lines {
+  width: 0.9rem;
+  height: 0.55rem;
+  background:
+    linear-gradient(var(--text), var(--text)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(var(--text), var(--text)) 0 100% / 100% 1px no-repeat;
+}
+
+.nav-toggle-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero {
+  position: relative;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(244, 241, 234, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 241, 234, 0.045) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+  pointer-events: none;
+}
+
+.hero .wrap {
+  position: relative;
+}
+
+.kicker {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.6rem;
+  background: var(--accent);
+  transform: translateY(-0.05rem);
+}
+
+.nameplate {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.8rem, 1.8vw, 1.6rem);
+}
+
+.portrait-frame {
+  width: clamp(5.5rem, 13vw, 10.75rem);
+  aspect-ratio: 4 / 5;
+  flex: none;
+  overflow: hidden;
+  background: #f3efe8;
+  box-shadow: 0 0 0 1px rgba(244, 241, 234, 0.22);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  transform: scale(1.42);
+  transform-origin: center 34%;
+}
+
+.hero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(4.6rem, 16vw, 12.6rem);
+  line-height: 0.78;
+  letter-spacing: -0.065em;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-top: 1.25rem;
+}
+
+.hero-grid > *,
+.about-grid > *,
+.section-head-row > *,
+.contact-grid > *,
+.highlight,
+.t-body,
+.prose {
+  min-width: 0;
+}
+
+.hero-name {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.hero-dek {
+  margin: 1rem 0 0;
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.05rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  letter-spacing: 0.04em;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #ff7342;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text);
+}
+
+.dossier {
+  margin: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.dossier div {
+  display: grid;
+  grid-template-columns: 7.2rem 1fr;
+  gap: 0.75rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.dossier dt {
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+
+.dossier dd {
+  margin: 0;
+}
+
+.dossier .is-accent {
+  color: var(--accent);
+}
+
+.org-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0;
+  margin: clamp(2.2rem, 5vw, 3.4rem) 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.org-row span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.org-row span:not(:last-child)::after {
+  content: "";
+  width: 0.28rem;
+  height: 0.28rem;
+  margin: 0 0.85rem;
+  background: var(--accent);
+}
+
+main section[id] {
+  scroll-margin-top: calc(var(--header) + 0.75rem);
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-tight {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.section-head {
+  margin-bottom: 1.5rem;
+}
+
+.section-head-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.section-index {
+  margin: 0 0 0.55rem;
+  color: var(--faint);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+.section-lead {
+  margin: 0;
+  color: var(--muted);
+  max-width: 36rem;
+  line-height: 1.6;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.about-grid .section-head {
+  position: sticky;
+  top: calc(var(--header) + 1.5rem);
+}
+
+.prose p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.prose a {
+  color: var(--text);
+}
+
+.fine {
+  color: var(--faint) !important;
+  font-size: 0.92rem !important;
+}
+
+.pull {
+  margin: 1.75rem 0;
+  padding: 1.25rem 0 1.25rem 1.1rem;
+  border-left: 2px solid var(--accent);
+}
+
+.pull-place {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(4rem, 8vw, 6rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+
+.pull-place span {
+  font-size: 0.42em;
+  margin-left: 0.08em;
+}
+
+.pull figcaption {
+  margin-top: 0.85rem;
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.t-item {
+  display: grid;
+  grid-template-columns: 13.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.t-when {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--faint);
+  font-size: 0.92rem;
+}
+
+.t-when time {
+  color: var(--text);
+}
+
+.t-body h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.t-meta {
+  margin: 0.3rem 0 0.45rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.t-body p:last-child {
+  margin: 0;
+  color: var(--muted);
+  max-width: 46rem;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  min-height: 13.5rem;
+  padding: 1rem 1rem 1.1rem;
+  text-decoration: none;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+}
+
+.highlight:hover {
+  border-color: var(--accent);
+}
+
+.highlight-place {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.highlight h3 {
+  margin: auto 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.highlight p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.wins-line {
+  margin: 0 0 1.75rem;
+  color: var(--muted);
+  max-width: 62rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  align-items: end;
+  margin-bottom: 0.75rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.chip:hover,
+.chip.is-active {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.chip.is-active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.toolbar-tools {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 11rem;
+}
+
+.tool span,
+.field span {
+  color: var(--faint);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tool input,
+.tool select,
+.field input,
+.field textarea {
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 0.65rem 0.7rem;
+  outline: none;
+}
+
+.tool input:focus,
+.tool select:focus,
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--text);
+}
+
+.results-count {
+  margin: 0 0 0.4rem;
+  color: var(--faint);
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 46rem;
+}
+
+.results-table th,
+.results-table td {
+  text-align: left;
+  padding: 0.85rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.results-table th {
+  font-weight: 500;
+}
+
+.results-table th button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.results-table th[aria-sort="ascending"] button,
+.results-table th[aria-sort="descending"] button {
+  color: var(--text);
+}
+
+.results-table th[aria-sort="descending"] button::after {
+  content: " ↓";
+}
+
+.results-table th[aria-sort="ascending"] button::after {
+  content: " ↑";
+}
+
+.results-table tbody tr:hover {
+  background: rgba(244, 241, 234, 0.03);
+}
+
+.results-table a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.3);
+}
+
+.results-table a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.place {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.place.is-win {
+  color: var(--accent);
+}
+
+.place.is-podium {
+  color: #f2c7b4;
+}
+
+.roster {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.prize {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 1.4rem 0.7rem !important;
+}
+
+.source-note {
+  margin: 1rem 0 0;
+  color: var(--faint);
+  font-size: 0.88rem;
+  max-width: 62rem;
+  line-height: 1.55;
+}
+
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.media-item {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.15rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.media-item time {
+  color: var(--faint);
+  font-size: 0.92rem;
+}
+
+.media-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.media-copy strong {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.media-copy span,
+.media-go {
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+
+.media-item:hover .media-go,
+.media-item:hover strong {
+  color: var(--accent);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 6.2rem;
+  padding: 0.9rem;
+  text-decoration: none;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+}
+
+.contact-link span {
+  color: var(--faint);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-link strong {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.form-status {
+  margin: 0;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.form-status.is-error {
+  color: #ffb4a2;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  overflow: hidden;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--faint);
+  font-size: 0.92rem;
+}
+
+.footer-top a {
+  color: var(--muted);
+}
+
+.footer-top a:hover {
+  color: var(--text);
+}
+
+.footer-mark {
+  margin: 0.4rem 0 -0.12em;
+  font-weight: 500;
+  font-size: clamp(6rem, 24vw, 18rem);
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 241, 234, 0.16);
+  user-select: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.nameplate,
+.hero-copy,
+.dossier {
+  animation: rise 0.7s ease both;
+}
+
+.hero-copy {
+  animation-delay: 0.08s;
+}
+
+.dossier {
+  animation-delay: 0.14s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .about-grid .section-head {
+    position: static;
+  }
+
+  .highlights {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .section-head-row,
+  .contact-grid,
+  .about-grid,
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    padding: 1.5rem var(--pad) 2.5rem;
+    background: rgba(9, 9, 11, 0.97);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .nav-link,
+  .nav-cta {
+    font-size: 1.7rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-transform: none;
+    border: 0;
+    padding: 0.15rem 0;
+  }
+
+  .nav-cta {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--line-strong);
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .toolbar,
+  .toolbar-tools,
+  .field-row,
+  .contact-links,
+  .footer-top,
+  .highlights {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toolbar-tools,
+  .contact-links,
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .t-item,
+  .media-item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .results-table {
+    min-width: 0;
+  }
+
+  .results-table thead {
+    display: none;
+  }
+
+  .results-table,
+  .results-table tbody,
+  .results-table tr,
+  .results-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .results-table tr {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .results-table td {
+    border: 0;
+    padding: 0.18rem 0;
+    display: grid;
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+
+  .results-table td::before {
+    content: attr(data-label);
+    color: var(--faint);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 0.28rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-title,
+  .hero-copy,
+  .dossier {
+    animation: none;
+  }
+}
+
+@media print {
+  .site-header,
+  .nav-toggle,
+  .inquiry,
+  .toolbar,
+  .footer-mark {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nicholas Barton",
+    "alternateName": "Rspi",
+    "birthDate": "2004-09-14",
+    "nationality": "United States",
+    "jobTitle": "Call of Duty esports player",
+    "url": "https://cod-esports.fandom.com/wiki/Rspi",
+    "sameAs": [
+      "https://x.com/Rspiii",
+      "https://cod-esports.fandom.com/wiki/Rspi"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#top">Rspi</a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a class="nav-link" href="#about">Profile</a>
+        <a class="nav-link" href="#career">Career</a>
+        <a class="nav-link" href="#results">Record</a>
+        <a class="nav-link" href="#media">Press</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-cta" href="#contact">Free agent</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <p class="kicker">Call of Duty · North America · Controller</p>
+        <div class="nameplate">
+          <div class="portrait-frame">
+            <img class="portrait" src="images/rspi.jpg" width="400" height="400" alt="Nicholas Barton">
+          </div>
+          <h1 class="hero-title">Rspi</h1>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="hero-name">Nicholas Barton</p>
+            <p class="hero-dek">Competitive Call of Duty player. Free agent, previously with OMNiA x Stallions. Born September 14, 2004.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#results">View the record</a>
+              <a class="btn btn-ghost" href="#contact">Roster inquiry</a>
+            </div>
+          </div>
+          <dl class="dossier">
+            <div>
+              <dt>Status</dt>
+              <dd class="is-accent">Free agent</dd>
+            </div>
+            <div>
+              <dt>Name</dt>
+              <dd>Nicholas Barton</dd>
+            </div>
+            <div>
+              <dt>Born</dt>
+              <dd>September 14, 2004</dd>
+            </div>
+            <div>
+              <dt>Nationality</dt>
+              <dd>United States</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd>North America</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>Player</dd>
+            </div>
+            <div>
+              <dt>Input</dt>
+              <dd>Controller</dd>
+            </div>
+            <div>
+              <dt>Last team</dt>
+              <dd>OMNiA x Stallions</dd>
+            </div>
+          </dl>
+        </div>
+        <p class="org-row">
+          <span>Luxury Exotics</span>
+          <span>FiveFears</span>
+          <span>Huntsmen</span>
+          <span>Team Orchid</span>
+          <span>CABAL Esports</span>
+          <span>OMNiA x Stallions</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <header class="section-head">
+          <p class="section-index">01 — Profile</p>
+          <h2 class="section-title">A Challengers career built in public.</h2>
+        </header>
+        <div class="prose">
+          <p>Nicholas “Rspi” Barton is an American Call of Duty player. He competes in North America on controller and is currently a free agent. His last listed team is OMNiA x Stallions.</p>
+          <p>From February 2025 through June 2026 he played for Luxury Exotics, FiveFears White, FiveFears Black, the Huntsmen, Team Orchid, CABAL Esports, and OMNiA x Stallions. The longest of those runs was the Huntsmen, December 4, 2025 to April 7, 2026, alongside Kips, Nium, and Renegade, with Methodz as general manager and H3CZ as owner.</p>
+          <p>With CABAL Esports he finished first or second in the CDC North America 2026 Elite Stage 4 season and second in the Stage 4 Playoffs, an event listed with a $10,000 prize. On July 5, 2026 he placed second at the CDC North America Last Chance Qualifier with Arcitys, Peel, and Priestahh.</p>
+          <figure class="pull">
+            <p class="pull-place">2<span>nd</span></p>
+            <figcaption>CDC North America 2026 Elite Stage 4 Playoffs. CABAL Esports, with Flames, Nemensions, zvik, and Afflicted. Listed prize $10,000.</figcaption>
+          </figure>
+          <p class="fine">This page uses the Call of Duty Esports Wiki only. The wiki biography is empty, so nothing here is a personal story beyond the published team history, results, and press. Prize figures are the amounts printed on the wiki, not confirmed personal earnings.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="career">
+      <div class="wrap">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="section-index">02 — Career</p>
+            <h2 class="section-title">Team history</h2>
+          </div>
+          <p class="section-lead">Eight stints, newest first. Dates and durations follow the wiki.</p>
+        </header>
+        <ol class="timeline">
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2026-06-23">Jun 23, 2026</time>
+              <span>≈ Jun 29, 2026</span>
+            </div>
+            <div class="t-body">
+              <h3>OMNiA x Stallions</h3>
+              <p class="t-meta">Player · about 6 days · North America</p>
+              <p>Joined with Booger, Leib, and Swooty. The group left around June 29.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2026-05-26">May 26, 2026</time>
+              <span>Jun 19, 2026</span>
+            </div>
+            <div class="t-body">
+              <h3>CABAL Esports</h3>
+              <p class="t-meta">Player · 24 days · North America</p>
+              <p>Second stint. Rejoined with Flames, Nemensions, and zvik. The roster left on June 19. This group finished second at the Elite Stage 4 Playoffs.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2026-05-09">May 9, 2026</time>
+              <span>May 23, 2026</span>
+            </div>
+            <div class="t-body">
+              <h3>CABAL Esports</h3>
+              <p class="t-meta">Player · 14 days · North America</p>
+              <p>CABAL signed the Team Orchid roster. Played with Flames, Nemensions, and Vivid. The roster left after the Atlanta Open.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2026-04-21">Apr 21, 2026</time>
+              <span>May 9, 2026</span>
+            </div>
+            <div class="t-body">
+              <h3>Team Orchid</h3>
+              <p class="t-meta">Player · 18 days · North America</p>
+              <p>Joined with Dak, Flames, and Nemensions. On May 9 the roster was signed by CABAL Esports.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2025-12-04">Dec 4, 2025</time>
+              <span>Apr 7, 2026</span>
+            </div>
+            <div class="t-body">
+              <h3>Huntsmen</h3>
+              <p class="t-meta">Player · 4 months, 3 days · North America</p>
+              <p>Joined with Kips, Nium, and Renegade. Methodz joined as general manager and H3CZ as owner. Rspi and Nemensions were released on April 7, 2026. Placed fourth at the CDC Dallas Open, listed with a $6,000 prize.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2025-05-18">May 18, 2025</time>
+              <span>May 25, 2025</span>
+            </div>
+            <div class="t-body">
+              <h3>FiveFears Black</h3>
+              <p class="t-meta">Player · 7 days · North America</p>
+              <p>Joined with GloFrosty and coach Jiren. Left on May 25.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2025-04-23">Apr 23, 2025</time>
+              <span>May 1, 2025</span>
+            </div>
+            <div class="t-body">
+              <h3>FiveFears White</h3>
+              <p class="t-meta">Player · 8 days · North America</p>
+              <p>Joined with Hamza, Nium, Traixx, and coach Jiren. Placed fourth at the CDC Miami Open, listed with an $8,000 prize.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <div class="t-when">
+              <time datetime="2025-02-25">Feb 25, 2025</time>
+              <span>Apr 23, 2025</span>
+            </div>
+            <div class="t-body">
+              <h3>Luxury Exotics</h3>
+              <p class="t-meta">Player · 1 month, 26 days · North America</p>
+              <p>Joined with Hitmxn, KB, and Milly. Left on April 23. Fourth at the CDC North America 2025 Elite Stage 3 Playoffs, listed with a $6,000 prize.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wrap">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="section-index">03 — Record</p>
+            <h2 class="section-title">Selected finishes</h2>
+          </div>
+          <p class="section-lead">Highlights from the Challengers circuit, then the full published table.</p>
+        </header>
+
+        <div class="highlights">
+          <a class="highlight" href="https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_4" target="_blank" rel="noopener noreferrer">
+            <p class="highlight-place">2nd</p>
+            <h3>Elite Stage 4 Playoffs</h3>
+            <p>CDC North America 2026 · CABAL Esports · June 18, 2026 · $10,000 listed</p>
+          </a>
+          <a class="highlight" href="https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Last_Chance_Qualifier" target="_blank" rel="noopener noreferrer">
+            <p class="highlight-place">2nd</p>
+            <h3>Last Chance Qualifier</h3>
+            <p>CDC North America 2026 · with Arcitys, Peel, and Priestahh · July 5, 2026</p>
+          </a>
+          <a class="highlight" href="https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/Dallas_Open" target="_blank" rel="noopener noreferrer">
+            <p class="highlight-place">4th</p>
+            <h3>Dallas Open</h3>
+            <p>CDC 2026 · Huntsmen · February 1, 2026 · $6,000 listed</p>
+          </a>
+          <a class="highlight" href="https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/Miami_Open" target="_blank" rel="noopener noreferrer">
+            <p class="highlight-place">4th</p>
+            <h3>Miami Open</h3>
+            <p>CDC 2025 · FiveFears White · April 27, 2025 · $8,000 listed</p>
+          </a>
+        </div>
+
+        <p class="wins-line">Event wins on this list: TorontoXP 5, ConsoleKings $7,000 4v4 Search and Destroy, and the $10,000 BO7 Creator SND Invitational. He also placed 1st–2nd in the Elite Stage 4 regular season.</p>
+
+        <div class="toolbar">
+          <div class="filters" role="group" aria-label="Filter results">
+            <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-filter="podium" aria-pressed="false">Podium</button>
+            <button class="chip" type="button" data-filter="top8" aria-pressed="false">Top 8</button>
+            <button class="chip" type="button" data-filter="prize" aria-pressed="false">Listed prize</button>
+            <button class="chip" type="button" data-filter="2026" aria-pressed="false">2026</button>
+            <button class="chip" type="button" data-filter="2025" aria-pressed="false">2025</button>
+            <button class="chip" type="button" data-filter="2024" aria-pressed="false">2024</button>
+          </div>
+          <div class="toolbar-tools">
+            <label class="tool">
+              <span>Search</span>
+              <input id="results-search" type="search" placeholder="Event, team, or teammate" autocomplete="off">
+            </label>
+            <label class="tool">
+              <span>Sort</span>
+              <select id="results-sort">
+                <option value="date-desc">Newest</option>
+                <option value="date-asc">Oldest</option>
+                <option value="place-asc">Best place</option>
+                <option value="prize-desc">Highest prize</option>
+                <option value="event-asc">Event A–Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+
+        <div class="table-wrap">
+          <table class="results-table">
+            <caption class="sr-only">Tournament results for Rspi from the Call of Duty Esports Wiki</caption>
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="descending"><button type="button" data-sort="date">Date</button></th>
+                <th scope="col" aria-sort="none"><button type="button" data-sort="place">Place</button></th>
+                <th scope="col" aria-sort="none"><button type="button" data-sort="event">Event</button></th>
+                <th scope="col" aria-sort="none"><button type="button" data-sort="team">Team</button></th>
+                <th scope="col" aria-sort="none"><button type="button" data-sort="prize">Prize</button></th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+        <noscript>
+          <p class="source-note">The results table needs JavaScript. Career history, highlights, and press above are still readable.</p>
+        </noscript>
+        <p class="source-note">Rows are the Call of Duty Esports Wiki tournament results from November 16, 2024 through July 5, 2026. The wiki lists older events that are not included. Where a prize was printed three times, it appears once. “Q” means the roster qualified.</p>
+      </div>
+    </section>
+
+    <section class="section" id="media">
+      <div class="wrap">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="section-index">04 — Press</p>
+            <h2 class="section-title">Media</h2>
+          </div>
+          <p class="section-lead">Coverage listed on the player page, mostly around the Huntsmen return and the April 2026 release.</p>
+        </header>
+        <ol class="media-list">
+          <li>
+            <a class="media-item" href="https://breakingpoint.gg/posts/huntsmen-release-rspi-nemesions" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-04-07">Apr 7, 2026</time>
+              <span class="media-copy">
+                <strong>Huntsmen release Rspi &amp; Nemesions</strong>
+                <span>EasyMac · Breaking Point</span>
+              </span>
+              <span class="media-go" aria-hidden="true">Read</span>
+            </a>
+          </li>
+          <li>
+            <a class="media-item" href="https://breakingpoint.gg/posts/sources-huntsmen-set-for-rebuild" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-04-07">Apr 7, 2026</time>
+              <span class="media-copy">
+                <strong>Sources: Huntsmen Set for Rebuild</strong>
+                <span>RonnieInteL · Breaking Point</span>
+              </span>
+              <span class="media-go" aria-hidden="true">Read</span>
+            </a>
+          </li>
+          <li>
+            <a class="media-item" href="https://youtu.be/fbD9zQCwsL8" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-02-17">Feb 17, 2026</time>
+              <span class="media-copy">
+                <strong>How Perfection Turned to Heartbreak | The Process</strong>
+                <span>OpTic Gaming · YouTube</span>
+              </span>
+              <span class="media-go" aria-hidden="true">Watch</span>
+            </a>
+          </li>
+          <li>
+            <a class="media-item" href="https://youtu.be/hZSoJQicvSw" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-01-28">Jan 28, 2026</time>
+              <span class="media-copy">
+                <strong>OpTic Texas &amp; Huntsmen Pre Major 1 Press Conference</strong>
+                <span>OpTic Gaming · YouTube</span>
+              </span>
+              <span class="media-go" aria-hidden="true">Watch</span>
+            </a>
+          </li>
+          <li>
+            <a class="media-item" href="https://www.breakingpoint.gg/posts/the-huntsmen-return-for-black-ops-7" target="_blank" rel="noopener noreferrer">
+              <time datetime="2025-12-04">Dec 4, 2025</time>
+              <span class="media-copy">
+                <strong>The Huntsmen return for Black Ops 7</strong>
+                <span>EasyMac · Breaking Point</span>
+              </span>
+              <span class="media-go" aria-hidden="true">Read</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap contact-grid">
+        <header class="section-head">
+          <p class="section-index">05 — Contact</p>
+          <h2 class="section-title">Available for a roster.</h2>
+          <p class="section-lead">No public email is listed on the player wiki. The handle cited by team posts is @Rspiii.</p>
+        </header>
+        <div class="contact-panel">
+          <div class="contact-links">
+            <a class="contact-link" href="https://x.com/Rspiii" target="_blank" rel="noopener noreferrer">
+              <span>X</span>
+              <strong>@Rspiii</strong>
+            </a>
+            <a class="contact-link" href="https://www.twitch.tv/nickrspi" target="_blank" rel="noopener noreferrer">
+              <span>Twitch</span>
+              <strong>NickRspi</strong>
+            </a>
+            <a class="contact-link" href="https://cod-esports.fandom.com/wiki/Rspi" target="_blank" rel="noopener noreferrer">
+              <span>Record</span>
+              <strong>Esports wiki</strong>
+            </a>
+          </div>
+
+          <form class="inquiry" id="inquiry" novalidate>
+            <div class="field-row">
+              <label class="field">
+                <span>Your name</span>
+                <input name="name" type="text" autocomplete="name" required maxlength="80">
+              </label>
+              <label class="field">
+                <span>Organization</span>
+                <input name="org" type="text" autocomplete="organization" required maxlength="80">
+              </label>
+            </div>
+            <label class="field">
+              <span>Note</span>
+              <textarea name="note" rows="5" required minlength="12" maxlength="600" placeholder="Role, dates, and how to reply."></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Copy inquiry</button>
+              <p class="form-status" id="form-status" role="status"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-top">
+      <p>Nicholas “Rspi” Barton · North America · Free agent</p>
+      <a href="https://cod-esports.fandom.com/wiki/Rspi" target="_blank" rel="noopener noreferrer">Source: Call of Duty Esports Wiki</a>
+    </div>
+    <p class="footer-mark" aria-hidden="true">Rspi</p>
+  </footer>
+
+  <script>
+(function () {
+  "use strict";
+
+  var RESULTS = [
+    { date: "2026-07-05", place: "2", prize: 0, event: "CDC North America 2026 Last Chance Qualifier", team: "WEBA", roster: "Arcitys, Peel, Priestahh, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Last_Chance_Qualifier" },
+    { date: "2026-06-28", place: "13–16", prize: 0, event: "CDC Paris Open 2026", team: "OMNiA x Stallions", roster: "Booger, Leib, Rspi, Swooty", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/Paris_Open" },
+    { date: "2026-06-21", place: "9–16", prize: 0, event: "CDC North America 2026 Cup #13", team: "JITS", roster: "Flames, Nemensions, Rspi, zvik", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_13" },
+    { date: "2026-06-18", place: "2", prize: 10000, event: "CDC North America 2026 Elite Stage 4 Playoffs", team: "CABAL Esports", roster: "Flames, Nemensions, Rspi, zvik, Afflicted", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_4" },
+    { date: "2026-06-10", place: "1–2", prize: 0, event: "CDC North America 2026 Elite Stage 4", team: "CABAL Esports", roster: "Flames, Nemensions, Rspi, zvik, Afflicted", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_4/Season" },
+    { date: "2026-05-31", place: "Q", prize: 0, event: "CDC North America 2026 Elite Stage 4 Qualifier", team: "CABAL Esports", roster: "Flames, Nemensions, Rspi, zvik, Afflicted", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_4/Qualifier" },
+    { date: "2026-05-17", place: "7–8", prize: 1500, event: "CDC Atlanta Open 2026", team: "CABAL Esports", roster: "Flames, Nemensions, Rspi, zvik, Afflicted", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/Atlanta_Open" },
+    { date: "2026-05-10", place: "9–16", prize: 0, event: "CDC North America 2026 Cup #11", team: "CABAL Esports", roster: "Flames, Nemensions, Rspi, Vivid, Afflicted", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_11" },
+    { date: "2026-04-29", place: "11–12", prize: 1000, event: "CDC North America 2026 Elite Stage 3", team: "Team Orchid", roster: "Dak, Flames, Nemensions, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_3/Season" },
+    { date: "2026-04-19", place: "Q", prize: 0, event: "CDC North America 2026 Elite Stage 3 Qualifier", team: "FLAM", roster: "Dak, Flames, Nemensions, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_3/Qualifier" },
+    { date: "2026-04-12", place: "7–8", prize: 0, event: "CDC North America 2026 Cup #9", team: "Stallions Black", roster: "Cimbels, Rspi, Nemensions, Jua", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_9" },
+    { date: "2026-03-29", place: "9–12", prize: 0, event: "CDC Birmingham Open 2026", team: "Huntsmen", roster: "Renegade, Rspi, oJohnny, Nemensions, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/Birmingham_Open" },
+    { date: "2026-03-22", place: "4", prize: 0, event: "CDC North America 2026 Cup #8", team: "Huntsmen", roster: "Renegade, Rspi, oJohnny, Nemensions, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_8" },
+    { date: "2026-03-11", place: "11–12", prize: 1000, event: "CDC North America 2026 Elite Stage 2", team: "Huntsmen", roster: "Renegade, Rspi, oJohnny, Nemensions, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_2/Season" },
+    { date: "2026-02-22", place: "4", prize: 0, event: "CDC North America 2026 Cup #6", team: "Huntsmen", roster: "Renegade, Rspi, oJohnny, Nemensions, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_6" },
+    { date: "2026-02-01", place: "4", prize: 6000, event: "CDC Dallas Open 2026", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/Dallas_Open" },
+    { date: "2026-01-25", place: "4", prize: 0, event: "CDC North America 2026 Cup #5", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_5" },
+    { date: "2026-01-22", place: "7–8", prize: 2000, event: "CDC North America 2026 Elite Stage 1 Playoffs", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_1" },
+    { date: "2026-01-14", place: "3–4", prize: 0, event: "CDC North America 2026 Elite Stage 1", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_1/Season" },
+    { date: "2026-01-04", place: "Q", prize: 0, event: "CDC North America 2026 Elite Stage 1 Qualifier", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Elite/Stage_1/Qualifier" },
+    { date: "2025-12-21", place: "5–6", prize: 0, event: "CDC North America 2026 Cup #3", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, MajorManiak", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_3" },
+    { date: "2025-12-14", place: "5–6", prize: 0, event: "CDC North America 2026 Cup #2", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, Methodz", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup_2" },
+    { date: "2025-12-07", place: "9–16", prize: 0, event: "CDC North America 2026 Cup #1", team: "Huntsmen", roster: "Kips, Nium, Renegade, Rspi, Methodz", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2026_Season/North_America/Cup" },
+    { date: "2025-12-03", place: "1", prize: 0, event: "$10,000 BO7 Creator SND Invitational", team: "FUTI", roster: "Futives, TDawg, Rspi, Havok", url: "https://cod-esports.fandom.com/wiki/$10000_BO7_Creator_SND_Invitational" },
+    { date: "2025-11-30", place: "1", prize: 0, event: "TorontoXP 5", team: "Luxury Exotics", roster: "Dak, Rspi, Wysors, Hitmxn", url: "https://cod-esports.fandom.com/wiki/TorontoXP_5" },
+    { date: "2025-11-25", place: "4", prize: 0, event: "Challengers Showcase Kickoff 2026", team: "ORGL", roster: "Asim, Nium, Priestahh, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Challengers_Showcase_Kickoff_2026" },
+    { date: "2025-11-23", place: "5–8", prize: 0, event: "Frag Cup V Play Rivals Qualifier", team: "SQUA", roster: "Asim, Priestahh, Rspi, Nium", url: "https://cod-esports.fandom.com/wiki/Frag_Cup_V/Play_Rivals_Qualifier" },
+    { date: "2025-11-20", place: "3", prize: 0, event: "Frag Cup V StartGG Qualifier", team: "MIRA", roster: "Asim, Priestahh, Rspi, Nium", url: "https://cod-esports.fandom.com/wiki/Frag_Cup_V/StartGG_Qualifier" },
+    { date: "2025-11-15", place: "9–16", prize: 0, event: "CODAgent Prestige $1500 4v4 S&D", team: "DECI", roster: "Rspi, Wysors, Driz, Prodigy", url: "https://cod-esports.fandom.com/wiki/CODAgent/Prestige_$1500_4v4_Search_and_Destroy/2025-11-15" },
+    { date: "2025-11-14", place: "9–16", prize: 0, event: "CODAgent $2000 4v4 S&D Kickoff", team: "TAI", roster: "Dak, Rspi, Nium, Gunless", url: "https://cod-esports.fandom.com/wiki/CODAgent/$2000_4v4_Search_and_Destroy/2025-11-14" },
+    { date: "2025-11-14", place: "1", prize: 0, event: "ConsoleKings $7000 4v4 S&D Kickoff", team: "TR2T", roster: "Rspi, Trades, Wysors, Tyme", url: "https://cod-esports.fandom.com/wiki/ConsoleKings/$7000_4v4_Search_and_Destroy/2025-11-14" },
+    { date: "2025-08-31", place: "4", prize: 0, event: "TPC Battlegrounds Championship 2025", team: "Luxury Exotics", roster: "Kips, Rspi, Wysors, Driz", url: "https://cod-esports.fandom.com/wiki/The_Premier_Circuit/2025_Season/Championship" },
+    { date: "2025-05-18", place: "17–32", prize: 0, event: "CDC North America 2025 Cup #12", team: "FiveFears Black", roster: "Darksived, Bink, GloFrosty, Rspi, Pug, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_12" },
+    { date: "2025-05-04", place: "7–8", prize: 0, event: "CDC North America 2025 Cup #11", team: "LOGA", roster: "Gunless, Lurqxx, Rspi, Fame, Ronin", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_11" },
+    { date: "2025-04-27", place: "4", prize: 8000, event: "CDC Miami Open 2025", team: "FiveFears White", roster: "Traixx, GloFrosty, Nium, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/Miami_Open" },
+    { date: "2025-04-20", place: "9–16", prize: 0, event: "CDC North America 2025 Cup #10", team: "FiveFears White", roster: "Traixx, Hamza, Nium, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_10" },
+    { date: "2025-04-17", place: "4", prize: 6000, event: "CDC North America 2025 Elite Stage 3 Playoffs", team: "Luxury Exotics", roster: "Traixx, Hamza, Nium, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_3/Playoffs" },
+    { date: "2025-04-09", place: "7–8", prize: 0, event: "CDC North America 2025 Elite Stage 3", team: "Luxury Exotics", roster: "Traixx, Hamza, Nium, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_3" },
+    { date: "2025-03-30", place: "Q", prize: 0, event: "CDC North America 2025 Elite Stage 3 Qualifier", team: "Luxury Exotics", roster: "Traixx, Hamza, Nium, Rspi, Jiren", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_3/Qualifier" },
+    { date: "2025-03-23", place: "13–16", prize: 0, event: "CDC Dallas Open 2025", team: "Luxury Exotics", roster: "Hitmxn, Rspi, KB, cWadz", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/Dallas_Open" },
+    { date: "2025-03-16", place: "9–16", prize: 0, event: "CDC North America 2025 Cup #8", team: "Luxury Exotics", roster: "Hitmxn, Rspi, KB, cWadz", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_8" },
+    { date: "2025-03-04", place: "11–12", prize: 1000, event: "CDC North America 2025 Elite Stage 2", team: "Luxury Exotics", roster: "Hitmxn, Rspi, Milly, KB", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_2" },
+    { date: "2025-02-23", place: "Q", prize: 0, event: "CDC North America 2025 Elite Stage 2 Qualifier", team: "HITM", roster: "Hitmxn, Rspi, Milly, KB", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_2/Qualifier" },
+    { date: "2025-02-16", place: "9–16", prize: 0, event: "CDC North America 2025 Cup #6", team: "Luxury Exotics", roster: "Driz, Hitmxn, Rspi, Milly", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_6" },
+    { date: "2025-01-26", place: "7–8", prize: 0, event: "CDC North America 2025 Cup #5", team: "Luxury Exotics", roster: "Driz, Hitmxn, Rspi, KB", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_5" },
+    { date: "2025-01-15", place: "9–10", prize: 1000, event: "CDC North America 2025 Elite Stage 1", team: "Luxury Exotics", roster: "Delo, Driz, Hitmxn, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_1" },
+    { date: "2025-01-05", place: "Q", prize: 0, event: "CDC North America 2025 Elite Stage 1 Qualifier", team: "Luxury Exotics", roster: "Delo, Driz, Hitmxn, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Elite/Stage_1/Qualifier" },
+    { date: "2024-12-15", place: "7–8", prize: 0, event: "The Premier Circuit East Coast Takeover 1", team: "Luxury Exotics", roster: "Delo, Wysors, Rspi, Driz", url: "https://cod-esports.fandom.com/wiki/The_Premier_Circuit/2025_Season/East_Coast_Takeover" },
+    { date: "2024-12-15", place: "17–32", prize: 0, event: "CDC North America 2025 Cup #3", team: "PAID", roster: "Delo, Driz, Hitmxn, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_3" },
+    { date: "2024-12-08", place: "17–32", prize: 0, event: "CDC North America 2025 Cup #2", team: "RAL", roster: "Kexrat, Yinn, Prodigy, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup_2" },
+    { date: "2024-11-24", place: "17–32", prize: 0, event: "CDC North America 2025 Cup #1", team: "RAL", roster: "Kexrat, Yinn, Prodigy, Rspi", url: "https://cod-esports.fandom.com/wiki/Call_of_Duty_Challengers/2025_Season/North_America/Cup" },
+    { date: "2024-11-16", place: "7–8", prize: 0, event: "CODAgent $1000 4v4 Variant", team: "RAL", roster: "Kexrat, Yinn, Prodigy, Rspi", url: "https://cod-esports.fandom.com/wiki/CODAgent/$1000_4v4_Variant/2024-11-16" }
+  ];
+
+  var state = {
+    filter: "all",
+    query: "",
+    sortKey: "date",
+    sortDir: "desc"
+  };
+
+  var body = document.getElementById("results-body");
+  var count = document.getElementById("results-count");
+  var search = document.getElementById("results-search");
+  var sortSelect = document.getElementById("results-sort");
+  var header = document.getElementById("site-header");
+  var nav = document.getElementById("site-nav");
+  var toggle = document.querySelector(".nav-toggle");
+  var money = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+  });
+
+  function bestPlace(place) {
+    if (place === "Q") return 100;
+    var value = parseInt(place, 10);
+    return isNaN(value) ? 100 : value;
+  }
+
+  function formatDate(iso) {
+    var parts = iso.split("-");
+    var date = new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2])));
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC"
+    }).format(date);
+  }
+
+  function placeClass(place) {
+    var best = bestPlace(place);
+    if (best <= 2) return "place is-win";
+    if (best <= 4) return "place is-podium";
+    return "place";
+  }
+
+  function matches(row) {
+    if (state.filter === "podium" && bestPlace(row.place) > 3) return false;
+    if (state.filter === "top8" && bestPlace(row.place) > 8) return false;
+    if (state.filter === "prize" && !row.prize) return false;
+    if (state.filter === "2026" || state.filter === "2025" || state.filter === "2024") {
+      if (row.date.slice(0, 4) !== state.filter) return false;
+    }
+    if (!state.query) return true;
+    var haystack = (row.event + " " + row.team + " " + row.roster + " " + row.place).toLowerCase();
+    return haystack.indexOf(state.query) !== -1;
+  }
+
+  function compare(a, b) {
+    var dir = state.sortDir === "asc" ? 1 : -1;
+    var result = 0;
+    if (state.sortKey === "date") result = a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+    else if (state.sortKey === "place") result = bestPlace(a.place) - bestPlace(b.place);
+    else if (state.sortKey === "prize") result = a.prize - b.prize;
+    else if (state.sortKey === "event") result = a.event.localeCompare(b.event);
+    else if (state.sortKey === "team") result = a.team.localeCompare(b.team);
+    if (result === 0) result = a.date < b.date ? 1 : -1;
+    return result * dir;
+  }
+
+  function cell(label, html, className) {
+    var td = document.createElement("td");
+    td.dataset.label = label;
+    if (className) td.className = className;
+    td.innerHTML = html;
+    return td;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function render() {
+    var rows = RESULTS.filter(matches).sort(compare);
+    body.textContent = "";
+
+    if (!rows.length) {
+      var empty = document.createElement("tr");
+      var td = document.createElement("td");
+      td.colSpan = 5;
+      td.className = "empty";
+      td.textContent = "No results match that filter.";
+      empty.appendChild(td);
+      body.appendChild(empty);
+    } else {
+      rows.forEach(function (row) {
+        var tr = document.createElement("tr");
+        var eventHtml = '<a href="' + escapeHtml(row.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.event) + "</a>";
+        var teamHtml = escapeHtml(row.team) + '<span class="roster">' + escapeHtml(row.roster) + "</span>";
+        tr.appendChild(cell("Date", escapeHtml(formatDate(row.date))));
+        tr.appendChild(cell("Place", escapeHtml(row.place), placeClass(row.place)));
+        tr.appendChild(cell("Event", eventHtml));
+        tr.appendChild(cell("Team", teamHtml));
+        tr.appendChild(cell("Prize", row.prize ? escapeHtml(money.format(row.prize)) : "—", "prize"));
+        body.appendChild(tr);
+      });
+    }
+
+    count.textContent = rows.length + (rows.length === 1 ? " result" : " results") + " of " + RESULTS.length;
+    syncSortHeaders();
+  }
+
+  function syncSortHeaders() {
+    document.querySelectorAll(".results-table th").forEach(function (th) {
+      var button = th.querySelector("button");
+      if (!button) return;
+      if (button.dataset.sort === state.sortKey) {
+        th.setAttribute("aria-sort", state.sortDir === "asc" ? "ascending" : "descending");
+      } else {
+        th.setAttribute("aria-sort", "none");
+      }
+    });
+    if (!sortSelect) return;
+    var next = state.sortKey + "-" + state.sortDir;
+    var hasOption = Array.prototype.some.call(sortSelect.options, function (option) {
+      return option.value === next;
+    });
+    if (hasOption) sortSelect.value = next;
+  }
+
+  document.querySelectorAll(".chip").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      state.filter = chip.dataset.filter;
+      document.querySelectorAll(".chip").forEach(function (other) {
+        var active = other === chip;
+        other.classList.toggle("is-active", active);
+        other.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      render();
+    });
+  });
+
+  if (search) {
+    search.addEventListener("input", function () {
+      state.query = search.value.trim().toLowerCase();
+      render();
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", function () {
+      var parts = sortSelect.value.split("-");
+      state.sortKey = parts[0];
+      state.sortDir = parts[1];
+      render();
+    });
+  }
+
+  document.querySelectorAll(".results-table th button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var key = button.dataset.sort;
+      if (state.sortKey === key) {
+        state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+      } else {
+        state.sortKey = key;
+        state.sortDir = key === "place" || key === "event" || key === "team" ? "asc" : "desc";
+      }
+      render();
+    });
+  });
+
+  function onScroll() {
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+    var links = document.querySelectorAll(".nav-link");
+    var current = "";
+    document.querySelectorAll("main section[id]").forEach(function (section) {
+      if (section.getBoundingClientRect().top <= 120) current = section.id;
+    });
+    links.forEach(function (link) {
+      var on = link.getAttribute("href") === "#" + current;
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  function setNav(open) {
+    if (!nav || !toggle) return;
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    var label = toggle.querySelector(".nav-toggle-label");
+    if (label) label.textContent = open ? "Close" : "Menu";
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setNav(!nav.classList.contains("is-open"));
+    });
+  }
+
+  document.querySelectorAll(".site-nav a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setNav(false);
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") setNav(false);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 800) setNav(false);
+  });
+
+  var form = document.getElementById("inquiry");
+  var status = document.getElementById("form-status");
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () {
+        return true;
+      }).catch(function () {
+        return fallbackCopy(text);
+      });
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+
+  function fallbackCopy(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
+    document.body.appendChild(area);
+    area.select();
+    var ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (error) {
+      ok = false;
+    }
+    area.remove();
+    return ok;
+  }
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var data = new FormData(form);
+      var name = String(data.get("name") || "").trim();
+      var org = String(data.get("org") || "").trim();
+      var note = String(data.get("note") || "").trim();
+
+      if (!name || !org || note.length < 12) {
+        status.textContent = "Add your name, organization, and a note of at least a sentence.";
+        status.classList.add("is-error");
+        return;
+      }
+
+      var message = [
+        "Roster inquiry for Rspi (@Rspiii)",
+        "Name: " + name,
+        "Organization: " + org,
+        "",
+        note
+      ].join("\n");
+
+      copyText(message).then(function (ok) {
+        status.classList.toggle("is-error", !ok);
+        status.textContent = ok
+          ? "Copied. Paste it into a message to @Rspiii."
+          : "Could not copy automatically. Select the note and copy it yourself.";
+      });
+    });
+  }
+
+  render();
+})();
+  </script>
+</body>
+</html>
